@@ -1,0 +1,12 @@
+--- # My first Yaml playbook fo Ansible
+- hosts: appserver
+  user: test
+  sudo: yes
+  connection: ssh
+  tasks:
+    - name: Install apache Web server
+      action: apt name=apache2 state=installed
+      notify: Restart HTTPD
+  handlers:
+    - name: Restart HTTPD
+      action: service name=apache2 state=restarted
