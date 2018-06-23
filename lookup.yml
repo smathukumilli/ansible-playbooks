@@ -1,0 +1,7 @@
+--- # Lookup Yaml
+- hosts: appserver
+  user: ubuntu
+  connection: ssh
+  become_user: yes
+  tasks:
+    - debug: msg="{{ lookup('env','PWD')}} is the value listed"
