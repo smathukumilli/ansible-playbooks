@@ -1,0 +1,14 @@
+--- # Until Example
+- hosts: appserver
+  connection: ssh
+  sudo: yes
+  tasks:
+    - name: Install apache Web server
+      action: apt name=apache2 state=installed
+    - name: verify service status
+      shell: service apache2 status
+      register: result
+      until: result.stdout.find("active (running)") != -1
+      retries: 5
+      delay: 5
+    - debug: var=result
