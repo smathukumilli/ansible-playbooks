@@ -1,0 +1,11 @@
+--- # run once Yaml
+- hosts: appserver
+  user: test
+  connection: ssh
+  become_user: yes
+  tasks:
+    - name: run the uptime command on all hosts and logit
+      raw: /usr/bin/uptime >> /home/ubuntu/uptime.log
+    - name: List the /var directory and logit
+      raw: ls -al /var >> /home/ubuntu/dir.list
+      run_once: true

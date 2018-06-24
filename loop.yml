@@ -1,0 +1,11 @@
+--- # loops and conditionals
+- hosts: appserver
+  connection: ssh
+  sudo : yes
+  tasks:
+    - name: Add a list of Users
+      user: name={{ item }}  state=present
+      with_items:
+        - user1
+        - user2
+        - user3
